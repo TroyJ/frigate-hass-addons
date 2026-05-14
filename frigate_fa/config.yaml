@@ -1,5 +1,5 @@
-name: Frigate (Full Access)
-version: 0.17.1
+name: Frigate (Full Access, troy)
+version: 0.17.1-troy.1
 breaking_versions:
   - 0.17.0
   - 0.16.0
@@ -8,9 +8,9 @@ breaking_versions:
 panel_icon: "mdi:cctv"
 panel_title: Frigate
 slug: frigate-fa
-description: NVR with realtime local object detection for IP cameras
-url: "https://github.com/blakeblackshear/frigate"
-image: ghcr.io/blakeblackshear/frigate
+description: NVR with realtime local object detection for IP cameras (TroyJ fork)
+url: "https://github.com/TroyJ/frigate"
+image: ghcr.io/troyj/frigate
 startup: application
 boot: auto
 init: false
@@ -49,7 +49,6 @@ schema:
 services:
   - "mqtt:want"
 arch:
-  - amd64
   - aarch64
 map:
   - "media:rw"
