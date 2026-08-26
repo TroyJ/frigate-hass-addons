@@ -1,5 +1,5 @@
 name: Frigate (Full Access, troy)
-version: 0.17.1-troy.13
+version: 0.17.1-troy.14
 breaking_versions:
   - 0.17.0
   - 0.16.0
@@ -15,6 +15,12 @@ startup: application
 boot: auto
 init: false
 webui: "http://[HOST]:[PORT:5000]/"
+# D16/F12: leave this pointing at `/`. Verified on the box 2026-08-27 — nginx's `location /`
+# has no `auth_request` include and serves index.html from disk in ~1 ms, so this probe
+# never reaches the single uvicorn worker. Pointing it at any `/api/...` path would make a
+# busy API look like a dead add-on and hand the Supervisor a reason to recreate the
+# container. The probe that DID do that is the image's Docker HEALTHCHECK (`/api/version`);
+# it is widened in frigate-fork/overlay.Dockerfile, not here.
 watchdog: "http://[HOST]:[PORT:5000]/"
 ingress: true
 ingress_port: 5000
